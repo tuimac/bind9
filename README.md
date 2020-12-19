@@ -4,8 +4,20 @@ This docker image is installed bind9. If you bind the port 53 of the container f
 Now this is just beta now.
 
 ## How to use
+### Prerequisite
+Disable local DNS. Because this container use as a external DNS server so it use port 53 tcp and udp.
+If your host OS is ubuntu, following line can disable local DNS.(If your ubuntu version deal with
+Systemd)
+
+```
+# systemctl stop systemd-resolved
+```
 
 ### Deployment
+You can deploy bind9 container like this,
+```
+docker run -itd --name bind9 -v $(pwd)/tuimac.private:/etc/bind/named/tuimac.private -p 53:53/tcp -p 53:53/udp --network="bridge" tuimac/bind9
+```
 
 ## Authors
 
