@@ -18,8 +18,6 @@ RUN apk update && \
     mkdir /etc/bind/named && \
     touch /var/log/bind9.log
 
-COPY tuimac.private /etc/bind/named/tuimac.private
-COPY named.conf /etc/bind/named.conf
 COPY entrypoint.sh /opt/entrypoint.sh
 
 ENTRYPOINT ["/opt/entrypoint.sh"]

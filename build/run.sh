@@ -3,7 +3,7 @@
 # Change variables below if you need
 ##############################
 NAME="dns"
-VOLUME="${PWD}/volume"
+VOLUME="${PWD}/tuimac.private"
 DOCKERHUBUSER="tuimac"
 IMAGE=${DOCKERHUBUSER}/${NAME}
 ##############################
@@ -11,7 +11,7 @@ IMAGE=${DOCKERHUBUSER}/${NAME}
 function runContainer(){
     docker run -itd --name ${NAME} \
                 -h ${NAME} \
-                -v ${VOLUME}:/tmp \
+                -v ${VOLUME}:/etc/bind/named/tuimac.private \
                 -p 53:53/tcp \
                 -p 53:53/udp \
                 --network="bridge" \
@@ -27,7 +27,6 @@ function createContainer(){
     mkdir ${VOLUME}
     docker build -t ${NAME} .
     runContainer
-    #docker logs ${NAME}
     cleanup
 }
 

@@ -7,3 +7,4 @@ $TTL    30
                         3H )    ; minimum
                     IN      NS      node3.tuimac.private.
 node3 IN A 10.3.0.227
+node4 IN A 10.3.0.222
