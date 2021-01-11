@@ -6,7 +6,9 @@ import logging
 import traceback
 import yaml
 import argparse
-import .config.namedConfig
+import subprocess
+
+from .config.namedConfig import NamedConfig
 
 logger = logging.getLogger('bind9')
 
@@ -28,6 +30,8 @@ class CustomArgparse(argparse.ArgumentParser):
         sys.exit(2)
 
 def main():
+    namedPath = '/etc/bind/named.conf'
+
     parser = CustomArgparse(
         prog = "bind9",
         description = "Just Bind9 manager to set up easier.",
@@ -45,11 +49,15 @@ def main():
         args = parser.parse_args()
 
         if args.config:
-            config = Config(importConfig(args.config))
-
+            named = NamedConfig(importConfig(args.config), namedPath)
+            named.acl()
+            named.options()
+            name.zone()
+            name.reload()
+            command = '/usr/sbin/named -c ' + namedPath + ' -g -u root'
+            subprocess.run(command.split())
         else:
             parser.error
-
     except:
         parser.
         traceback.print_exc()
