@@ -1,0 +1,12 @@
+acl:
+  - localnet:
+      - '10.3.0.0/16'
+      - '172.17.0.0/16'
+options:
+  listen-on:
+    - '127.0.0.1'
+  forwarders:
+    - '10.3.0.2'
+    - '8.8.8.8'
+zone:
+  - 'tuimac.private'
